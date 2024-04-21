@@ -1,0 +1,14 @@
+@startuml aks
+component "Instrument\n(Data Generator)" as Instrument
+component "Local Storage\n(Raw Data)" as LocalStorage
+component "Local Script\n(Data Handler)" as LocalScript
+component "Staging Area\n(Pre-processed Data)" as StagingArea
+component "Azure Kubernetes Service\n(Data Processing)" as AKS
+component "Data Pipeline\n(Processing Jobs)" as DataPipeline
+
+Instrument --> LocalStorage : Generates
+LocalStorage --> LocalScript : Transfers
+LocalScript --> StagingArea : Processes
+StagingArea --> AKS : Transfers
+AKS --> DataPipeline : Manages
+@enduml
